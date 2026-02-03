@@ -190,15 +190,48 @@ to the look of the entire graph.
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
-
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = continent, 
+    y = plastic_waste_per_cap
+  )
+) + 
+  geom_boxplot()
 ```
 
-### Exercise 4
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
 
-Remove this text, and add your answer for Exercise 4 here.
+![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = continent, 
+    y = plastic_waste_per_cap
+  )
+) + 
+  geom_violin()
+```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-violin-2.png)<!-- -->
+
+The violin plot shows a continuous distribution of plastic waste per
+capita within the continents. These plots tell us which continents have
+more or less plastic waste per capita in each category. For example,
+North America has more countries with a plastic waste per capita than
+Africa. As such, it shows the density of the distribution whereas the
+boxplots show the exact five number distribution that some people may be
+interested in knowing, such as the median and IQR. Those numbers are
+harder to gauge in the violin plot than in the boxplot.
+
+### Exercise 4
 
 ``` r
 # insert code here

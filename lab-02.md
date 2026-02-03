@@ -234,20 +234,152 @@ harder to gauge in the violin plot than in the boxplot.
 ### Exercise 4
 
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = mismanaged_plastic_waste_per_cap
+  )
+) + 
+  geom_point()
 ```
 
-``` r
-# insert code here
-```
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
+
+The relationship between mismanaged plastic waste per capita and plastic
+waste per capita seem highly correlated at lower levels and less so at
+higher levels. Overall, the two variables are positively correlated but
+that relationship is being influenced by the outliers. It seems that
+some of the countries who have a higher number of mismanaged waste per
+capita have smaller levels of plastic waste per capita. Thus, their
+overall plastic waste per capita may be low but the plastic waste they
+do have is typically high in relation to their PWPC (plastic waste per
+capita). The rest of the countries’ MPWPC is porportional to their PWPC.
+The outlier has high PWPC and has a relatively high, but not the
+highest, MPWPC overall.
 
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = mismanaged_plastic_waste_per_cap, 
+    color = continent
+  )
+) + 
+  geom_point()
 ```
 
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
+
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = mismanaged_plastic_waste_per_cap 
+  )
+) + 
+  geom_point()+
+  facet_wrap(~continent, nrow = 3, ncol = 3)
 ```
+
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-2.png)<!-- -->
+
+There are some clear distinctions between continents in the association
+between MPWPC and PWPC. South America’s relationship seems much stronger
+than Ocenia. Africa also has a pretty strong linear relationship where
+they have less PWPC but within that PWPC their MPWPC varies but not by
+much. South America and Europe’s relationship between MPWPC and PWPC
+seems incredibly strong where their PWPC is low and what PWPC they have
+is not that mismanaged. North America seems to have variance that is
+being pulled by the outlier. Even without the outlier, there are some
+differences between countries in the relationship between PWPC and
+MPWPC. Overall their relationships are all going in the same direction,
+with varying strengths.
+
+``` r
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = total_pop, 
+    color = continent
+  )
+) + 
+  geom_point()
+```
+
+    ## Warning: Removed 61 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = total_pop,
+    y = plastic_waste_per_cap, 
+    color = continent
+  )
+) + 
+  geom_point()
+```
+
+    ## Warning: Removed 61 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-total-2.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = coastal_pop, 
+    color = continent
+  )
+) + 
+  geom_point()
+```
+
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste, 
+  mapping = aes(
+    x = coastal_pop, 
+    y = plastic_waste_per_cap,
+    color = continent
+  )
+) + 
+  geom_point()
+```
+
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-2.png)<!-- -->
+
+The relationship between PWPC and the coastal population seems to be
+slightly more linearly (and negatively) associated than the relationship
+between PWPC and the total population. However, I don’t think it’s a
+significant difference since the shapes and density of the plots are
+very similar.
 
 ### Exercise 5
 

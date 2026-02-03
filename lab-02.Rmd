@@ -21,6 +21,7 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 ### Exercise 1
 
 We'll begin by looking at the distrbution of plastic waste per capita in 2010. The goal here is to understand what our data are doing and if there are any major outliers. We will also look at the distribution by continent using the facet_wrap function. In the second histogram plot we're telling R to plot the plastic waste per capita and make multiple histograms showing the distribution for each continent.
+
 ```{r plastic-waste-continent}
 ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
   geom_histogram(binwidth = 0.2)
@@ -213,10 +214,27 @@ The relationship between PWPC and the coastal population seems to be slightly mo
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+These data show that most countries have greater plastic waste per capita when their coastal population proportion is around 1.0. There are quite a few outliers though that are impacting this relationship. This graph also took me a very long time to figure out and I almost gave up but I didn't!!
 
 ```{r recreate-viz}
-# insert code here
+ggplot(
+  data = plastic_waste %>% filter(plastic_waste_per_cap < 3),
+  mapping = aes(
+    x = CPP <- coastal_pop/total_pop, 
+    y = plastic_waste_per_cap
+  )
+) + 
+  geom_smooth(lwd = 1, se = TRUE) +
+  geom_point(aes(color = continent)) +
+  labs(
+    x = "Coastal Population Proportion",
+    y = "Plastic Waste Per Capita",
+    title = "Plastic Waste vs. Coastal Population Proportion",
+    subtitle = "by continent"
+  ) + 
+    scale_color_viridis_d()
+
+ 
 ```
 
 

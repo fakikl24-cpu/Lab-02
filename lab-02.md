@@ -383,8 +383,37 @@ very similar.
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+These data show that most countries have greater plastic waste per
+capita when their coastal population proportion is around 1.0. There are
+quite a few outliers though that are impacting this relationship. This
+graph also took me a very long time to figure out and I almost gave up
+but I didn’t!!
 
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste %>% filter(plastic_waste_per_cap < 3),
+  mapping = aes(
+    x = CPP <- coastal_pop/total_pop, 
+    y = plastic_waste_per_cap
+  )
+) + 
+  geom_smooth(lwd = 1, se = TRUE) +
+  geom_point(aes(color = continent)) +
+  labs(
+    x = "Coastal Population Proportion",
+    y = "Plastic Waste Per Capita",
+    title = "Plastic Waste vs. Coastal Population Proportion",
+    subtitle = "by continent"
+  ) + 
+    scale_color_viridis_d()
 ```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 10 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 10 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->
